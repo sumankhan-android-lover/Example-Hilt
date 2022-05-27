@@ -1,6 +1,6 @@
-package com.webskitters.client.testhiltexample.utils
+package com.webskitters.client.testhiltexample.app
 
-class Constants {
+class MyConstants {
 
     object COMMON_CONST {
         const val DEVICE_TYPE = "android"
@@ -15,6 +15,10 @@ class Constants {
 
     object API_END_POINT {
         const val App_SignIn = "api/Login"
+    }
+
+    object DATABASE_CONST {
+        const val DATABASE_NAME = "my_test_db"
     }
 
 

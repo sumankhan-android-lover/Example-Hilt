@@ -2,8 +2,7 @@ package com.webskitters.client.testhiltexample.data.network
 
 import android.content.Context
 import com.webskitters.client.testhiltexample.BuildConfig
-import com.webskitters.client.testhiltexample.utils.Constants
-import okhttp3.Authenticator
+import com.webskitters.client.testhiltexample.app.MyConstants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,7 +17,7 @@ class RemoteDataSource @Inject constructor() {
         context: Context
     ): Api {
         return Retrofit.Builder()
-            .baseUrl(Constants.COMMON_CONST.BASE_URL)
+            .baseUrl(MyConstants.COMMON_CONST.BASE_URL)
             .client(getRetrofitClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -29,7 +28,7 @@ class RemoteDataSource @Inject constructor() {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
                 chain.proceed(chain.request().newBuilder().also {
-                    it.addHeader("Authorizationkey", Constants.COMMON_CONST.TOKEN)
+                    it.addHeader("Authorizationkey", MyConstants.COMMON_CONST.TOKEN)
                 }.build())
             }.also { client ->
                 if (BuildConfig.DEBUG) {

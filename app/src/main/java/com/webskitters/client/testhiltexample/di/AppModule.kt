@@ -1,6 +1,7 @@
 package com.webskitters.client.testhiltexample.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.webskitters.client.testhiltexample.data.network.ApiService
 import com.webskitters.client.testhiltexample.data.network.RemoteDataSource
 import dagger.Module
@@ -12,6 +13,7 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
     @Provides
     fun provideApi(
         @ApplicationContext context: Context,
@@ -19,4 +21,13 @@ object AppModule {
     ): ApiService {
         return remoteDataSource.buildApi(ApiService::class.java, context)
     }
+
+    @Provides
+    fun provideSharedPreference(
+        @ApplicationContext context: Context
+    ): SharedPreferences {
+        return context.getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
+    }
+
+
 }
